@@ -36,7 +36,7 @@ class loginView
             
         </body>
         </html>
-           <script src="/columbario/js/login.js"></script>
+           <script src="/columbarios/js/login.js"></script>
 
         <?php
     }

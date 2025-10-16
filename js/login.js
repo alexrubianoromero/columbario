@@ -12,9 +12,9 @@ function verificarCredenciales()
               var  resp = JSON.parse(this.responseText);
             //   alert(resp.valida);
               if(resp.valida == 1){
-                  window.location.href = "https://www.alexrubiano.com/columbario/dashboard/dashboard.php";
+                  window.location.href = "https://www.alexrubiano.com/columbarios/dashboard/dashboard.php";
                 }else {
-                  window.location.href = "https://www.alexrubiano.com/columbario/index.php";
+                  window.location.href = "https://www.alexrubiano.com/columbarios/index.php";
                     
               }
             // document.getElementById("div_principal_ingresotecnicos").innerHTML = this.responseText;
