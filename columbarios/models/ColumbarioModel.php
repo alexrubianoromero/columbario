@@ -11,6 +11,16 @@ class ColumbarioModel extends Conexion
          $result = $this->get_table_assoc($consulta);
         return $result; 
     }
+    public function traerColumnarioId($id)
+    {
+        $sql = "select * from columbarios where id = '".$id."'";
+        $consulta = mysql_query($sql,$this->connectMysql());
+        $result = mysql_fetch_assoc($consulta);
+        return $result; 
+    }
+
+
+
     public function grabarColumbario($request)
     {
         $sql = "insert into columbarios (numero,idPlanta, idPared) 

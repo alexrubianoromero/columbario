@@ -23,5 +23,20 @@ class paredView
         }
         echo '</select>';
     }
+    public function mostrarParedesSelectIdPared($idPared)
+    {
+        $paredes =  $this->model->traerParedes();
+        echo '<select class="form-control" id="idPared" >';
+        // echo '<option value="">Seleccione...</option>';
+        foreach($paredes as $pared)
+        {
+              if($pared['id'] ==  $idPared)
+            {
+                echo '<option selected value="'.$pared['id'].'">'.$pared['pared'].'</option>';
+            }else { echo '<option value="'.$pared['id'].'">'.$pared['pared'].'</option>'; }
+            
+        }
+        echo '</select>';
+    }
 
 }

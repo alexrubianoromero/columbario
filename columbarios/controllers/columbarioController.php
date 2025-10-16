@@ -31,6 +31,11 @@ class columbarioController
             $this->view->mostrarColumnarios($columbarios);
 
         }
+        if($_REQUEST['opcion']=='verInfoColumbario')
+        {
+            $this->view->verInfoColumbario($_REQUEST['idColumbario']);
+
+        }
         if($_REQUEST['opcion']=='grabarColumbario')
         {
             $this->model->grabarColumbario($_REQUEST);

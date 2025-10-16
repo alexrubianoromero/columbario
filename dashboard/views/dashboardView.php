@@ -50,13 +50,15 @@ class dashboardView{
                             
                         </div>
                         
-                        <div class="col-lg-7 bordeLinea" id="columncentral" style="height:80vh; overflow: auto;">
-                            Contenido de la Columna Central
+                        <div class="col-lg-6 bordeLinea" id="columncentral" style="height:80vh; overflow: auto;">
+                            <!-- Contenido de la Columna Central -->
                         </div>
 
-                        <div class="col-lg-3" style=" height:80vh; border:2px solid black;overflow-y:auto;">
+                        <div id="columnaDerecha"  class="col-lg-4" style=" height:80vh; border:2px solid black;overflow-y:auto;">
                             <!-- Contenido de la Columna Derecha      -->
-                            <?php   $this->menuCuenta();    ?>
+                            <?php   
+                                // $this->menuCuenta();    
+                            ?>
 
                         </div>
                     </div>

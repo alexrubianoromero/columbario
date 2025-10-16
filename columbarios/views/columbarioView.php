@@ -5,6 +5,8 @@ require_once($ruta.'/plantas/views/plantaView.php');
 require_once($ruta.'/plantas/models/PlantaModel.php');
 require_once($ruta.'/paredes/views/paredView.php');
 require_once($ruta.'/paredes/models/ParedModel.php');
+require_once($ruta.'/estados/models/EstadoModel.php');
+require_once($ruta.'/estados/views/EstadoView.php');
 
 
 class columbarioView  
@@ -14,6 +16,9 @@ class columbarioView
     protected $paredView;
     protected $plantaModel;
     protected $paredModel;
+    protected $estadoModel;
+    protected $estadoView;
+
 
     public function __construct()
     {
@@ -22,6 +27,8 @@ class columbarioView
         $this->plantaModel = new PlantaModel();
         $this->paredView = new paredView();
         $this->paredModel = new ParedModel();
+        $this->estadoModel = new EstadoModel();
+        $this->estadoView = new EstadoView();
     }
 
     public function pantallaColumnarios()
@@ -62,11 +69,14 @@ class columbarioView
         echo '<td>Numero</td>';
         echo '<td>Planta</td>';
         echo '<td>Pared</td>';
+        echo '<td>Estado</td>';
+        echo '<td>Ver</td>';
         echo '</tr>';
         foreach($columbarios as $columb)
         {
         $infoPlanta =      $this->plantaModel->traerPlantaId($columb['idPlanta']);
         $infoPared =       $this->paredModel ->traerParedId($columb['idPared']);
+        $infoEstado =       $this->estadoModel ->traerEstadoId($columb['idEstado']);
         //   echo '<pre>';
         //         print_r($infoPared);
         //         echo '</pre>';
@@ -75,6 +85,11 @@ class columbarioView
         echo '<td>'.$columb['numero'].'</td>';
         echo '<td>'.$infoPlanta['planta'].'</td>';
         echo '<td>'.$infoPared['pared'].'</td>';
+        echo '<td>'.$infoEstado['descripcion'].'</td>';
+        echo '<td><button class="btn btn-primary" 
+            onclick="verInfoColumbario('.$columb['id'].');"
+            data-bs-toggle="modal" data-bs-target="#modalColumbario123"
+            >Ver</button></td>';
         echo '</tr>';
       }
       echo '</table>';
@@ -106,6 +121,43 @@ class columbarioView
 
     <?php
     }
+    public function verInfoColumbario($idColumbario)
+    {
+        $columb =   $this->model->traerColumnarioId($idColumbario);
+        $infoPlanta =      $this->plantaModel->traerPlantaId($columb['idPlanta']);
+        $infoPared =       $this->paredModel ->traerParedId($columb['idPared']);
+        $infoEstado =       $this->estadoModel ->traerEstadoId($columb['idEstado']);
+    ?>
+        <div class="mt-2 row">
+            <div class="col-lg-3">
+                <label>Numero</label>
+                <input type="text" class="form-control" id="numero" value="<?php   echo $columb['numero'];   ?>">
+            </div>
+            <div class="col-lg-3">
+                <label>Planta</label>
+                <?php  $this->plantaView->mostrarPlantasSeleccionIdPlanta($columb['idPlanta']);   ?>
+            </div>
+            <div class="col-lg-3">
+                <label>Pared</label>
+                <?php  $this->paredView->mostrarParedesSelectIdPared($columb['idPared'])   ?>
+            </div>
+            <div class="col-lg-3">
+                <label>Estado</label>
+                <?php  $this->estadoView->mostrarEstadosSelectedIdEstado($columb['idEstado'])   ?>
+            </div>
+            <div class="mt-2">
+                <!-- <button class="btn btn-primary" onclick="grabarColumbario();">Registrar</button> -->
+            </div>
+        </div>
+    
+
+    <?php
+    }
+
+
+
+
+
 
     public function modalColumnario()
     {
