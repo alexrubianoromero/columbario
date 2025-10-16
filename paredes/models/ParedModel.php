@@ -11,6 +11,16 @@ class ParedModel extends Conexion
          $result = $this->get_table_assoc($consulta);
         return $result; 
     }
+
+
+    public function traerParedId($idPared)
+    {
+        $sql = "select * from paredes where id = '".$idPared."'   ";
+        // die($sql);
+        $consulta = mysql_query($sql,$this->connectMysql());
+         $result = mysql_fetch_assoc($consulta);
+        return $result; 
+    }
 }
 
 ?>

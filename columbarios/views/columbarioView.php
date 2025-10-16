@@ -2,7 +2,9 @@
 $ruta = dirname(dirname(dirname(__FILE__)));
 require_once($ruta.'/columbarios/models/ColumbarioModel.php');
 require_once($ruta.'/plantas/views/plantaView.php');
+require_once($ruta.'/plantas/models/PlantaModel.php');
 require_once($ruta.'/paredes/views/paredView.php');
+require_once($ruta.'/paredes/models/ParedModel.php');
 
 
 class columbarioView  
@@ -10,12 +12,16 @@ class columbarioView
     protected $model;
     protected $plantaView;
     protected $paredView;
+    protected $plantaModel;
+    protected $paredModel;
 
     public function __construct()
     {
         $this->model = new ColumbarioModel();
         $this->plantaView = new plantaView();
+        $this->plantaModel = new PlantaModel();
         $this->paredView = new paredView();
+        $this->paredModel = new ParedModel();
     }
 
     public function pantallaColumnarios()
@@ -51,18 +57,24 @@ class columbarioView
 
     public function mostrarColumnarios($columbarios)
     {
-      echo '<table class="table">'; 
-      echo '<tr>';  
-      echo '<td>Numero</td>';
-      echo '<td>Planta</td>';
-      echo '<td>Pared</td>';
-      echo '</tr>';
-      foreach($columbarios as $columb)
-      {
+        echo '<table class="table">'; 
+        echo '<tr>';  
+        echo '<td>Numero</td>';
+        echo '<td>Planta</td>';
+        echo '<td>Pared</td>';
+        echo '</tr>';
+        foreach($columbarios as $columb)
+        {
+        $infoPlanta =      $this->plantaModel->traerPlantaId($columb['idPlanta']);
+        $infoPared =       $this->paredModel ->traerParedId($columb['idPared']);
+        //   echo '<pre>';
+        //         print_r($infoPared);
+        //         echo '</pre>';
+        //         die();
         echo '<tr>';  
         echo '<td>'.$columb['numero'].'</td>';
-        echo '<td>'.$columb['idPlanta'].'</td>';
-        echo '<td>'.$columb['idPared'].'</td>';
+        echo '<td>'.$infoPlanta['planta'].'</td>';
+        echo '<td>'.$infoPared['pared'].'</td>';
         echo '</tr>';
       }
       echo '</table>';
@@ -106,7 +118,7 @@ class columbarioView
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="mpdalBodyColumbario">
-                ...
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="mostrarColumnarios();">Close</button>

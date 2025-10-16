@@ -62,7 +62,9 @@ class dashboardView{
                     </div>
 
                     <div class="row bordeLinea"  style="padding:10px;height:10vh;">
-                        <?php  $this->botonesAbajo2(); ?>
+                        <?php  
+                            // $this->botonesAbajo2(); 
+                        ?>
                     </div>
                     <div class="row bordeLinea"  style="height:5vh; padding:2px;">
                         ultima linea

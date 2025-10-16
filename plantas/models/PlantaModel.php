@@ -11,6 +11,13 @@ class PlantaModel extends Conexion
          $result = $this->get_table_assoc($consulta);
         return $result; 
     }
+    public function traerPlantaId($idPlanta)
+    {
+        $sql = "select * from plantas where id = '".$idPlanta."'   ";
+        $consulta = mysql_query($sql,$this->connectMysql());
+         $result = mysql_fetch_assoc($consulta);
+        return $result; 
+    }
 }
 
 ?>
