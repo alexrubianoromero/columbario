@@ -36,10 +36,21 @@ class columbarioController
             $this->view->verInfoColumbario($_REQUEST['idColumbario']);
 
         }
+        if($_REQUEST['opcion']=='formuAsignarColumbario')
+        {
+            $this->view->formuAsignarColumbario($_REQUEST['idColumbario']);
+
+        }
         if($_REQUEST['opcion']=='grabarColumbario')
         {
             $this->model->grabarColumbario($_REQUEST);
             echo 'Registrado';
+
+        }
+        if($_REQUEST['opcion']=='realizarAsignacionClienteAColumbario')
+        {
+            $this->model->realizarAsignacionClienteAColumbario($_REQUEST);
+            // echo 'Registrado';
 
         }
 

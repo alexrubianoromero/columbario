@@ -7,6 +7,7 @@ require_once($ruta.'/paredes/views/paredView.php');
 require_once($ruta.'/paredes/models/ParedModel.php');
 require_once($ruta.'/estados/models/EstadoModel.php');
 require_once($ruta.'/estados/views/EstadoView.php');
+require_once($ruta.'/clientes/models/ClienteModel.php');
 
 
 class columbarioView  
@@ -18,6 +19,7 @@ class columbarioView
     protected $paredModel;
     protected $estadoModel;
     protected $estadoView;
+    protected $clienteModel;
 
 
     public function __construct()
@@ -29,6 +31,7 @@ class columbarioView
         $this->paredModel = new ParedModel();
         $this->estadoModel = new EstadoModel();
         $this->estadoView = new EstadoView();
+        $this->clienteModel = new ClienteModel();
     }
 
     public function pantallaColumnarios()
@@ -127,6 +130,7 @@ class columbarioView
         $infoPlanta =      $this->plantaModel->traerPlantaId($columb['idPlanta']);
         $infoPared =       $this->paredModel ->traerParedId($columb['idPared']);
         $infoEstado =       $this->estadoModel ->traerEstadoId($columb['idEstado']);
+        $infoPropietario =        $this->clienteModel->traerClienteId($columb['idPropietario']);
     ?>
         <div class="mt-2 row">
             <div class="col-lg-3">
@@ -149,12 +153,70 @@ class columbarioView
                 <!-- <button class="btn btn-primary" onclick="grabarColumbario();">Registrar</button> -->
             </div>
         </div>
+        <div class="mt-2 row">
+            <div class="col-lg-3">
+                <label>Asignado a:</label>
+            </div>
+            <div class="col-lg-4">
+                <?php
+                    if($columb['idPropietario']== 0){
+                        echo '<button class="btn btn-primary" onclick="formuAsignarColumbario('.$columb['id'].');">Asignar</button>';     
+                    }else{
+                        echo '<label>'.$infoPropietario['nombre'].'</label>';
+                    }
+                    ?>
+                
+            </div>
+            
+        </div>
+        
+        
+        <?php
+    }
     
+    public function formuAsignarColumbario($idColumbario)
+    {
+        ?>
+         <input type="hidden" class="form-control" id="idColumbario"  value="<?php echo $idColumbario; ?>">
+        <div class="mt-2 row">
+            <div class="col-lg-3">
+                <label>No Contrato</label>
+                   <input type="text" class="form-control" id="contrato" >
+            </div>
+            <div class="col-lg-5">
+                <input type="hidden" class="form-control" id="idClienteEscogido"   >
+                <label>Cliente:</label>
+                <input onfocus="blur();"type="text" class="form-control" id="nombreClienteEscogido"   >
+            </div>
+            <div class="col-lg-3">
+                <label>Accion</label>
+                <button class="btn btn-primary" onclick="realizarAsignacionClienteAColumbario();">Asignar</button>
+            </div>
+            <div class="col-lg-8">
+                <label>Buscar Persona</label>
+                  <div>
+                         <input 
+                         class="form-control"
+                        type="text" 
+                        id="txtBuscarNombre" 
+                        placeholder="Nombre" 
+                        style="color:black; font-size:20px;" 
+                        onkeyup="buscarClientePorNombreAsignarColumbario();"
+                        size = "10px"
+                        >
+                  </div>
+
+            </div>
+                <div class="mt-1" align = "center" id="divResultadosClientesColumbario">
+                      <?php 
+                          // $this->verClientes($clientes);   
+                       ?>
+               </div>
+
+        </div>
 
     <?php
     }
-
-
 
 
 

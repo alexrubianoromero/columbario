@@ -72,6 +72,29 @@
         + "&idPared="+idPared
         );
 }
+ function realizarAsignacionClienteAColumbario()
+ {
+    // alert('idgrupo de producto'+idGrupo);
+      var idColumbario =  document.getElementById("idColumbario").value;
+      var idClienteEscogido =  document.getElementById("idClienteEscogido").value;
+        const http=new XMLHttpRequest();
+        const url = '../columbarios/columbario.php';
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status ==200){
+                // document.getElementById("mpdalBodyColumbario").innerHTML = this.responseText;
+            }
+        };
+        
+        http.open("POST",url);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send("opcion=realizarAsignacionClienteAColumbario"
+        + "&idColumbario="+idColumbario
+        + "&idClienteEscogido="+idClienteEscogido
+        );
+        setTimeout(() => {
+            verInfoColumbario(idColumbario);
+        }, 300);
+}
  function verInfoColumbario(idColumbario)
  {
         const http=new XMLHttpRequest();
@@ -87,3 +110,19 @@
         + "&idColumbario="+idColumbario
         );
 }
+ function formuAsignarColumbario(idColumbario)
+ {
+        const http=new XMLHttpRequest();
+        const url = '../columbarios/columbario.php';
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status ==200){
+                document.getElementById("mpdalBodyColumbario").innerHTML = this.responseText;
+            }
+        };
+        http.open("POST",url);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send("opcion=formuAsignarColumbario"
+        + "&idColumbario="+idColumbario
+        );
+}
+

@@ -285,6 +285,44 @@ class CLientesVista extends vista
         // }
 
     }
+    public function verClientesColumbario($clientes){
+        // echo '<pre>';
+        // print_r($clientes);
+        // echo '</pre>';
+        // if($clientes['filas']>0)
+        // {
+            ?>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IDENTI</th>
+                        <th>NOMBRE</th>
+                        <th>TELEFONO</th>
+                    
+                        <!-- <th>DIRECCION</th>
+                        <th>EMAIL</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($clientes as $cli){
+                            echo '<tr>';
+                         
+                            echo '<td>'.strtoupper($cli['identi']).'</td>';
+                            ?>
+                            <td><button class="btn btn-primary" 
+                            onclick="colocarClienteComoEscogido(<?php echo $cli['idcliente']; ?>,'<?php echo $cli['nombre']; ?>');"><?php echo $cli['nombre']; ?></button></td>
+                            <?php
+                            echo '<td>'.strtoupper($cli['telefono']).'</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                </tbody>
+            </table>
+            <?php
+        // }
+
+    }
 
 
 

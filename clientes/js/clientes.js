@@ -491,7 +491,33 @@ function buscarClientePorNombre()
         + "&nombre="+nombre
         );
 }
-    
+function buscarClientePorNombreAsignarColumbario()
+{
+    var nombre =  document.getElementById("txtBuscarNombre").value;
+    const http=new XMLHttpRequest();
+    const url = '../clientes/clientes.php';
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status ==200){
+            console.log(this.responseText);
+            document.getElementById("divResultadosClientesColumbario").innerHTML  = this.responseText;
+        }
+    };
+    http.open("POST",url);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(
+        "opcion=buscarClientePorNombreAsignarColumbario"
+        + "&nombre="+nombre
+    );
+}
+
+function colocarClienteComoEscogido(idCliente,nombre)
+{
+    document.getElementById("idClienteEscogido").value = idCliente;
+    document.getElementById("nombreClienteEscogido").value = nombre;
+    document.getElementById("divResultadosClientesColumbario").innerHTML  = '';
+      
+}
+
     function busquedaAvanzada()
     {
         // alert('avanzada');

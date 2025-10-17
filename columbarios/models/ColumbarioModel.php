@@ -18,9 +18,9 @@ class ColumbarioModel extends Conexion
         $result = mysql_fetch_assoc($consulta);
         return $result; 
     }
-
-
-
+    
+    
+    
     public function grabarColumbario($request)
     {
         $sql = "insert into columbarios (numero,idPlanta, idPared) 
@@ -28,7 +28,18 @@ class ColumbarioModel extends Conexion
         
         )";
         $consulta = mysql_query($sql,$this->connectMysql());
-   
+        
+    }
+    
+    public function realizarAsignacionClienteAColumbario($request)
+    {
+        $sql = "update columbarios    
+            set  idPropietario = '".$request['idClienteEscogido']."'    
+            , idEstado= '2'    
+            where id = '".$request['idColumbario']."'   ";
+        $consulta = mysql_query($sql,$this->connectMysql());
+
+
     }
 
 

@@ -72,6 +72,9 @@ class ClientesControlador
             if($_REQUEST['opcion']=='buscarClientePorNombre'){
                 $this->buscarClientePorNombre($_REQUEST);
             }
+            if($_REQUEST['opcion']=='buscarClientePorNombreAsignarColumbario'){
+                $this->buscarClientePorNombreAsignarColumbario($_REQUEST);
+            }
         //     if($_REQUEST['opcion']=='formuFiltroBusqueda'){
         //         $this->formuFiltroBusqueda();
         //     }
@@ -105,6 +108,12 @@ class ClientesControlador
     {
         $clientes = $this->modelCliente->buscarClientePorNombre($request['nombre']);
         $this->vista->verClientes($clientes);
+    }
+    
+    function buscarClientePorNombreAsignarColumbario($request)
+    {
+        $clientes = $this->modelCliente->buscarClientePorNombre($request['nombre']);
+        $this->vista->verClientesColumbario($clientes);
     }
     
         
