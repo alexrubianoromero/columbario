@@ -15,8 +15,19 @@ class estadoView
     public function mostrarEstados()
     {
         $estados =  $this->model->traerEstados();
-        echo '<select class="form-control" id="idPlanta" >';
-        echo '<option value="">Seleccione...</option>';
+        echo '<select class="form-control" id="idEstado" >';
+        echo '<option value="">Estadooption>';
+        foreach($estados as $estado)
+        {
+            echo '<option value="'.$estado['id'].'">'.$estado['descripcion'].'</option>';
+        }
+        echo '</select>';
+    }
+    public function mostrarEstadosFiltroEstado()
+    {
+        $estados =  $this->model->traerEstados();
+        echo '<select class="form-control" id="idEstado" onchange="filtrarEstadosColumbarios();">';
+        echo '<option value="">Estado</option>';
         foreach($estados as $estado)
         {
             echo '<option value="'.$estado['id'].'">'.$estado['descripcion'].'</option>';

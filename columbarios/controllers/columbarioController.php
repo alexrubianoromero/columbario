@@ -31,6 +31,18 @@ class columbarioController
             $this->view->mostrarColumnarios($columbarios);
 
         }
+        if($_REQUEST['opcion']=='buscarNumeroColumbario')
+        {
+             $columbarios =   $this->model->traerColumnariosFiltradosNumero($_REQUEST['numeroColumbario']); 
+            $this->view->mostrarColumnarios($columbarios);
+
+        }
+        if($_REQUEST['opcion']=='filtrarEstadosColumbarios')
+        {
+             $columbarios =   $this->model->filtrarEstadosColumbarios($_REQUEST['idEstado']); 
+            $this->view->mostrarColumnarios($columbarios);
+
+        }
         if($_REQUEST['opcion']=='verInfoColumbario')
         {
             $this->view->verInfoColumbario($_REQUEST['idColumbario']);

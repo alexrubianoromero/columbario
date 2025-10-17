@@ -50,12 +50,24 @@ class columbarioView
             <title>Document</title>
         </head>
         <body>
-            <div class="mt-2">
-                <button class="btn btn-primary"
-                onclick="formuNuevoColumbario();"
-                data-bs-toggle="modal" data-bs-target="#modalColumbario123"
-                >Nuevo Columnario</button>
+            <div class="row">
+
+                <div class=" col-lg-3 mt-2">
+                    <button class="btn btn-primary"
+                    onclick="formuNuevoColumbario();"
+                    data-bs-toggle="modal" data-bs-target="#modalColumbario123"
+                    >Nuevo Columnario</button>
+                </div>
+                <div class=" col-lg-3 mt-2">
+                   <input class ="form-control" 
+                        type="text" id="numeroColumbario" placeholder="numero" 
+                        onkeyup="buscarNumeroColumbario();">
+                </div>
+                <div class=" col-lg-3 mt-2">
+                  <?php    $this->estadoView->mostrarEstadosFiltroEstado() ?>
+                </div>
             </div>
+
             <div class="mt-2" id="divMuestreColumbarios">
                 <?php  $this->mostrarColumnarios($columbarios); ?>
             </div>
@@ -116,6 +128,12 @@ class columbarioView
                 <label>Pared</label>
                 <?php  $this->paredView->mostrarParedes();   ?>
             </div>
+            
+
+            <divclass="mt-2">
+                <label>Observaciones</label>
+                <textarea class="form-control"  id="observaciones"></textarea>
+            </div>
             <div class="mt-2">
                 <button class="btn btn-primary" onclick="grabarColumbario();">Registrar</button>
             </div>
@@ -148,6 +166,9 @@ class columbarioView
             <div class="col-lg-3">
                 <label>Estado</label>
                 <?php  $this->estadoView->mostrarEstadosSelectedIdEstado($columb['idEstado'])   ?>
+            </div>
+            <div class="mt-2">
+                <textarea id="observaciones" class="form-control"><?php  echo  $columb['observaciones']; ?></textarea>
             </div>
             <div class="mt-2">
                 <!-- <button class="btn btn-primary" onclick="grabarColumbario();">Registrar</button> -->

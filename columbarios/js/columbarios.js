@@ -56,6 +56,7 @@
       var numero =  document.getElementById("numero").value;
       var idPlanta =  document.getElementById("idPlanta").value;
       var idPared =  document.getElementById("idPared").value;
+      var observaciones =  document.getElementById("observaciones").value;
         const http=new XMLHttpRequest();
         const url = '../columbarios/columbario.php';
         http.onreadystatechange = function(){
@@ -70,6 +71,7 @@
         + "&numero="+numero
         + "&idPlanta="+idPlanta
         + "&idPared="+idPared
+        + "&observaciones="+observaciones
         );
 }
  function realizarAsignacionClienteAColumbario()
@@ -95,6 +97,42 @@
             verInfoColumbario(idColumbario);
         }, 300);
 }
+ function buscarNumeroColumbario()
+ {
+    // alert('idgrupo de producto'+idGrupo);
+      var numeroColumbario =  document.getElementById("numeroColumbario").value;
+        const http=new XMLHttpRequest();
+        const url = '../columbarios/columbario.php';
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status ==200){
+                document.getElementById("divMuestreColumbarios").innerHTML = this.responseText;
+            }
+        };
+        http.open("POST",url);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send("opcion=buscarNumeroColumbario"
+        + "&numeroColumbario="+numeroColumbario
+        );
+}
+ function filtrarEstadosColumbarios()
+ {
+    // alert('idgrupo de producto'+idGrupo);
+      var idEstado =  document.getElementById("idEstado").value;
+        const http=new XMLHttpRequest();
+        const url = '../columbarios/columbario.php';
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status ==200){
+                document.getElementById("divMuestreColumbarios").innerHTML = this.responseText;
+            }
+        };
+        http.open("POST",url);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send("opcion=filtrarEstadosColumbarios"
+        + "&idEstado="+idEstado
+        );
+}
+
+
  function verInfoColumbario(idColumbario)
  {
         const http=new XMLHttpRequest();
